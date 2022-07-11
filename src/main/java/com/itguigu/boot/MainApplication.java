@@ -4,8 +4,11 @@ import com.itguigu.boot.bean.Pet;
 import com.itguigu.boot.bean.User;
 import com.itguigu.boot.config.MyConfig;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.SpringBootConfiguration;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 
 /**
  * @SpringBootApplacation:
@@ -15,7 +18,12 @@ import org.springframework.context.ConfigurableApplicationContext;
 //@SpringBootApplication自带类似于@ComponentScan扫描包的注解，两个注解只能存在一个
 //主程序所在包及其下面所有子包里面的组件都会被默认扫描
 // 若是非要定义在包外，也可通过String[] scanBasePackages() default {};来设置扫描包
-@SpringBootApplication(scanBasePackages = "com.itguigu")
+//@SpringBootApplication(scanBasePackages = "com.itguigu")
+@SpringBootConfiguration
+@EnableAutoConfiguration
+@ComponentScan("com.itguigu")
+//这三个注解就是@SpringBootApplication注解的核心，在这拆开来看
+//@SpringBootConfiguration里面就一个注解：@Configuration，代表当前是一个配置类
 public class MainApplication {
     public static void main(String[] args) {
         //1. 返回我们的IOC容器
@@ -45,6 +53,13 @@ public class MainApplication {
 
         boolean user01 = run.containsBean("user01");
         System.out.println("容器中user01组件 = " + user01);
+
+
+//        虽然配置了beans.xml文件，但是sprngboot没有加载到容器中，只能使用@ImportResource
+        boolean hehe = run.containsBean("hehe");
+        System.out.println("hehe = " + hehe);
+        boolean haha = run.containsBean("haha");
+        System.out.println("haha = " + haha);
 
     }
 }
