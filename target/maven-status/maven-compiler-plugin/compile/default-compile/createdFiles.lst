@@ -1,2 +1,6 @@
-com\itguigu\boot\Controller\HelloController.class
+com\itguigu\boot\bean\User.class
 com\itguigu\boot\MainApplication.class
+com\itguigu\boot\config\MyConfig.class
+com\itguigu\boot\Controller\HelloController.class
+com\itguigu\boot\bean\Car.class
+com\itguigu\boot\bean\Pet.class
